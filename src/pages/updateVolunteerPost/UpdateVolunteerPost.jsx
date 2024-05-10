@@ -1,16 +1,20 @@
-import { useContext, useState } from 'react'
+
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios'
 import { useLoaderData, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../provider/AuthProvider'
+import toast from 'react-hot-toast'
+import useAuthContext from '../../hooks/useAuthContext'
+import { useState } from 'react'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
 
 const UpdateVolunteerPost = () => {
     const navigate = useNavigate()
     const job = useLoaderData()
     // console.log(job);
     const { _id, job_title, deadline, job_category, min_price, max_price, description } = job || {}
-    const { user } = useContext(AuthContext)
+    const { user } = useAuthContext()
+    const axiosCus = useAxiosSecure()
     const [startDate, setStartDate] = useState(new Date(deadline) || new Date())
     const handleJobUpdate = async e => {
         e.preventDefault()
@@ -22,7 +26,7 @@ const UpdateVolunteerPost = () => {
         const min_price = parseFloat(form.min_price.value)
         const max_price = parseFloat(form.max_price.value)
         const description = form.description.value
-        const jobData = {
+        const volunteerData = {
             job_title,
             deadline,
             category,
@@ -37,22 +41,22 @@ const UpdateVolunteerPost = () => {
         }
 
         try {
-            const { data } = await axios.put(
-                `${import.meta.env.VITE_LOCAL_API_URL}/job/${_id}`, jobData
+            const { data } = await axiosCus.put(
+                `/volunteer/${_id}`, volunteerData
             )
             console.log(data)
-            alert('Job Data Updated Successfully!')
-            navigate('/mypostedjobs')
+            toast.success('Volunteer Data Updated Successfully!')
+            navigate('/manage-my-post')
         } catch (err) {
             console.log(err)
-            alert(err.message)
+            toast.error(err.message)
         }
     }
     return (
         <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
             <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-md '>
                 <h2 className='text-lg font-semibold text-gray-700 capitalize '>
-                    Update a Job
+                    Update a Volunteer Post
                 </h2>
 
                 <form onSubmit={handleJobUpdate}>
