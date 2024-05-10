@@ -34,22 +34,6 @@ const NavBar = () => {
         }
     };
 
-    const navLinks = (
-        <>
-            <li><NavLink to={"/"}>Home</NavLink></li>
-            <li><NavLink to={"/alljobs"}>Need Volunteer</NavLink></li>
-            <li><NavLink to={"/alljobs"}>My Profile</NavLink></li>
-            {/* <li><NavLink to={"/alljobs"}>All Jobs</NavLink></li> */}
-            {/* {user && (
-                <>
-                    <li><NavLink to={"/addjob"}>Add Job</NavLink></li>
-                    <li><NavLink to={"/mybids"}>My Bids</NavLink></li>
-                    <li><NavLink to={"/mypostedjobs"}>My Posted Jobs</NavLink></li>
-                    <li><NavLink to={"/bidrequests"}>Bid Request</NavLink></li>
-                </>
-            )} */}
-        </>
-    );
 
     return (
         <div className="navbar">
@@ -60,7 +44,21 @@ const NavBar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] shadow bg-base-100 rounded w-40">
-                        {navLinks}
+                        <li><NavLink to={"/"}>Home</NavLink></li>
+                        <li><NavLink to={"/alljobs"}>Need Volunteer</NavLink></li>
+                        <li>
+                            <details>
+                                <summary>My Profile</summary>
+                                <ul className="p-2 z-50">
+                                    {user && (
+                                        <>
+                                            <li><NavLink to={"/addjob"}>Add Volunteer</NavLink></li>
+                                            <li><NavLink to={"/mybids"}>Manage My Post</NavLink></li>
+                                        </>
+                                    )}
+                                </ul>
+                            </details>
+                        </li>
                         <li>
                             {user ? (
                                 <div className="dropdown dropdown-hover">
@@ -94,8 +92,22 @@ const NavBar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal gap-x-1 lg:text-[13px] xl:text-sm">
-                    {navLinks}
+                <ul className="menu menu-horizontal px-1">
+                    <li><NavLink to={"/"}>Home</NavLink></li>
+                    <li><NavLink to={"/alljobs"}>Need Volunteer</NavLink></li>
+                    <li>
+                        <details>
+                            <summary>My Profile</summary>
+                            <ul className="p-2 z-50">
+                                {user && (
+                                    <>
+                                        <li><NavLink to={"/add-volunteer"}>Add Volunteer</NavLink></li>
+                                        <li><NavLink to={"/manage-my-post"}>Manage My Post</NavLink></li>
+                                    </>
+                                )}
+                            </ul>
+                        </details>
+                    </li>
                 </ul>
             </div>
             <div className="navbar-end gap-2 hidden lg:flex">
