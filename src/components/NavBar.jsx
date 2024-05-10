@@ -45,15 +45,15 @@ const NavBar = () => {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] shadow bg-base-100 rounded w-40">
                         <li><NavLink to={"/"}>Home</NavLink></li>
-                        <li><NavLink to={"/alljobs"}>Need Volunteer</NavLink></li>
+                        <li><NavLink to={"/need-volunteer"}>Need Volunteer</NavLink></li>
                         <li>
                             <details>
                                 <summary>My Profile</summary>
                                 <ul className="p-2 z-50">
                                     {user && (
                                         <>
-                                            <li><NavLink to={"/addjob"}>Add Volunteer</NavLink></li>
-                                            <li><NavLink to={"/mybids"}>Manage My Post</NavLink></li>
+                                            <li><NavLink to={"/add-volunteer-post"}>Add Volunteer Post</NavLink></li>
+                                            <li><NavLink to={"/manage-my-post"}>Manage My Post</NavLink></li>
                                         </>
                                     )}
                                 </ul>
@@ -94,7 +94,7 @@ const NavBar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><NavLink to={"/"}>Home</NavLink></li>
-                    <li><NavLink to={"/alljobs"}>Need Volunteer</NavLink></li>
+                    <li><NavLink to={"/need-volunteer"}>Need Volunteer</NavLink></li>
                     <li>
                         <details>
                             <summary>My Profile</summary>
