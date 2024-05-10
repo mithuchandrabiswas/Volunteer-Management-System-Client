@@ -101,7 +101,7 @@ const NavBar = () => {
                             <ul className="p-2 z-50">
                                 {user && (
                                     <>
-                                        <li><NavLink to={"/add-volunteer"}>Add Volunteer</NavLink></li>
+                                        <li><NavLink to={"/add-volunteer-post"}>Add Volunteer</NavLink></li>
                                         <li><NavLink to={"/manage-my-post"}>Manage My Post</NavLink></li>
                                     </>
                                 )}
