@@ -7,6 +7,8 @@ import ErrorPage from "../pages/errorPage/ErrorPage";
 import NeedVolunteer from "../pages/needVolunteer/NeedVolunteer";
 import AddVolunteerPost from "../pages/addVounteerPost/AddVolunteerPost";
 import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
+import UpdateVolunteerPost from "../pages/updateVolunteerPost/UpdateVolunteerPost";
+import PrivateRoutes from '../routes/PrivateRoutes'
 
 const router = createBrowserRouter([
     {
@@ -24,11 +26,16 @@ const router = createBrowserRouter([
             },
             {
                 path: "/add-volunteer-post",
-                element: <AddVolunteerPost />,
+                element: <PrivateRoutes><AddVolunteerPost /></PrivateRoutes>,
             },
             {
                 path: "/manage-my-post",
-                element: <ManageMyPost />,
+                element: <PrivateRoutes><ManageMyPost /></PrivateRoutes>,
+            },
+            {
+                path: "/updatejob/:id",
+                element: <UpdateVolunteerPost />,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`)
             },
             {
                 path: "/login",
