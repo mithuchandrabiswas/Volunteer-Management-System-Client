@@ -37,7 +37,17 @@ const NavBar = () => {
     const navLinks = (
         <>
             <li><NavLink to={"/"}>Home</NavLink></li>
-            
+            <li><NavLink to={"/alljobs"}>Need Volunteer</NavLink></li>
+            <li><NavLink to={"/alljobs"}>My Profile</NavLink></li>
+            {/* <li><NavLink to={"/alljobs"}>All Jobs</NavLink></li> */}
+            {/* {user && (
+                <>
+                    <li><NavLink to={"/addjob"}>Add Job</NavLink></li>
+                    <li><NavLink to={"/mybids"}>My Bids</NavLink></li>
+                    <li><NavLink to={"/mypostedjobs"}>My Posted Jobs</NavLink></li>
+                    <li><NavLink to={"/bidrequests"}>Bid Request</NavLink></li>
+                </>
+            )} */}
         </>
     );
 

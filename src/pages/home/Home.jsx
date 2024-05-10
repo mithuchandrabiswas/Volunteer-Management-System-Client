@@ -9,6 +9,7 @@ const Home = () => {
     return (
         <div>
             <SwipperSlider></SwipperSlider>
+            <TabsCategories jobs={jobs}></TabsCategories>
         </div>
     );
 };
