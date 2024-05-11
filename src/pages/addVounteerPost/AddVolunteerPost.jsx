@@ -12,24 +12,25 @@ const AddVolunteerPost = () => {
     const [startDate, setStartDate] = useState(new Date());
     const navigate = useNavigate();
 
-    const handleJobSubmit = async (e) => {
+
+    const handleAddVolunteer = async (e) => {
         // if(email === user?.email) return alert("Sorry you are not bid. Because you are onwer of this bid")
+        // if(price < min_price) return alert("min price is to low... al least equal to min price Please check")
         e.preventDefault();
         const form = e.target;
-        // const jobId = _id;
-        const job_title = form.job_title.value;
-        const email = form.email.value;
-        const job_category = form.category.value;
-        const min_price = parseFloat(form.min_price.value);
-        const max_price = parseFloat(form.max_price.value);
-        // if(price < min_price) return alert("min price is to low... al least equal to min price Please check")
+        const thumbnail = form.thumbnail.value;
+        const post_title = form.post_title.value;
         const description = form.description.value;
-        // const comment = form.comment.value;
-        const user_email = form.userEmail?.value || '';
-        // const status = "Pending";
+        const category = form.category.value;
+        const location = form.location.value;
+        const total_volunteer_need = form.total_volunteer_need.value;
         const deadline = startDate;
-        const volunteerData = { job_title, email, deadline, job_category, min_price, max_price, description, user_email, buyer: {email, name: user?.displayName, photo: user?.photoURL } };
-        console.table(volunteerData);
+        const organizer_email = form.organizer_email.value;
+        const organizer_name = form.organizer_name.value;
+        const volunteerData = { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name }
+        // console.log(volunteerData);
+        // console.table(volunteerData);
+
         try {
             const { data } = await axiosCus.post(`/volunteer`, volunteerData)
             console.log(data);
@@ -39,105 +40,103 @@ const AddVolunteerPost = () => {
             console.log(err);
         }
     }
+
     return (
-        <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
-            <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-md '>
-                <h2 className='text-lg font-semibold text-gray-700 capitalize '>
-                    Added a Volunteer Post
-                </h2>
-
-                <form onSubmit={handleJobSubmit}>
-                    <div className='grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2'>
-                        <div>
-                            <label className='text-gray-700 ' htmlFor='job_title'>
-                                Job Title
+        <div className="bg-green-50 my-4 p-1 rounded-md">
+            <div className='py-2 md:py-4'>
+                <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Add Volunteer</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, id voluptatum labore asperiores, molestias libero ab dicta dolor earum animi enim perspiciatis necessitatibus cum repellat.</p>
+            </div>
+            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#71707080]">
+                <form onSubmit={handleAddVolunteer} className="card-body p-4">
+                    {/* row-1 */}
+                    <div className="flex flex-col md:flex-row  gap-4">
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Thumbnail<span className="text-red-600">*</span></span>
                             </label>
-                            <input
-                                id='job_title'
-                                name='job_title'
-                                type='text'
-                                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                            />
+                            <input type="text" name="thumbnail" placeholder="Thumbnail..." required className="input input-sm input-bordered placeholder:text-xs" />
                         </div>
-
-                        <div>
-                            <label className='text-gray-700 ' htmlFor='emailAddress'>
-                                Email Address
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Post Title<span className="text-red-600">*</span></span>
                             </label>
-                            <input
-                                id='emailAddress'
-                                type='email'
-                                name='email'
-                                defaultValue={user.email}
-                                disabled
-                                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                            />
+                            <input type="text" name="post_title" placeholder="Post title..." required className="input input-sm input-bordered placeholder:text-xs" />
                         </div>
-
-                        <div className='flex flex-col gap-2 '>
-                            <label className='text-gray-700'>Deadline</label>
-
-                            {/* Date Picker Input Field */}
-                            <DatePicker className="border p-2 rounded-md" selected={startDate} onChange={(date) => setStartDate(date)} />
-                        </div>
-
-                        <div className='flex flex-col gap-2 '>
-                            <label className='text-gray-700 ' htmlFor='category'>
-                                Category
+                    </div>
+                    {/* Row 2 */}
+                    <div className="flex flex-col md:flex-row  gap-4">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Description<span className="text-red-600">*</span></span>
                             </label>
-                            <select
-                                name='category'
-                                id='category'
-                                className='border p-2 rounded-md'
-                            >
-                                <option value='Web Development'>Web Development</option>
-                                <option value='Web Design'>Web Design</option>
-                                <option value='Graphics Design'>Graphics Design</option>
-                                <option value='Digital Marketing'>Digital Marketing</option>
+                            <textarea name="description" rows={2} cols={4} className="p-2 rounded-md placeholder:text-xs" placeholder="Description your post..." required></textarea>
+                        </div>
+                    </div>
+
+                    {/* Row 3 */}
+                    <div className="flex flex-col md:flex-row  gap-4">
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Category Name<span className="text-red-600">*</span></span>
+                            </label>
+                            {/* onChange={subCategoryChange} */}
+                            <select name="category" id="category" className="px-2 py-1 rounded-md text-xs">
+                                <option value="">Select your category</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Education">Education</option>
+                                <option value="Social service">Social service</option>
+                                <option value="Animal welfare">Animal welfare</option>
                             </select>
                         </div>
-
-                        <div>
-                            <label className='text-gray-700 ' htmlFor='min_price'>
-                                Minimum Price
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Location<span className="text-red-600">*</span></span>
                             </label>
-                            <input
-                                id='min_price'
-                                name='min_price'
-                                type='number'
-                                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                            />
+                            <input type="text" name="location" placeholder="Location..." required className="input input-sm input-bordered placeholder:text-xs" />
                         </div>
+                    </div>
 
-                        <div>
-                            <label className='text-gray-700 ' htmlFor='max_price'>
-                                Maximum Price
+                    {/* row-4 */}
+                    <div className="flex flex-col md:flex-row  gap-4">
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">No. of volunteers needed<span className="text-red-600">*</span></span>
                             </label>
-                            <input
-                                id='max_price'
-                                name='max_price'
-                                type='number'
-                                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+                            <input type="number" name="total_volunteer_need" placeholder="Volunteers need..." required className="input input-sm input-bordered placeholder:text-xs" />
+                        </div>
+                        <div className='form-control w-full md:w-1/2'>
+                            <label className='text-gray-700 md:mt-3'>Deadline<span className="text-red-600">*</span></label>
+                            <DatePicker
+                                className='border p-2 rounded-md input-sm w-full'
+                                selected={startDate}
+                                onChange={date => setStartDate(date)}
+                                required
                             />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2 mt-4'>
-                        <label className='text-gray-700 ' htmlFor='description'>
-                            Description
-                        </label>
-                        <textarea
-                            className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                            name='description'
-                            id='description'
-                        ></textarea>
+
+                    {/* row-5 */}
+                    <div className="flex flex-col md:flex-row  gap-4">
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Organizer Email</span>
+                            </label>
+                            <input type="email" name="organizer_email" defaultValue={user?.email} className="input input-sm input-bordered text-xs" disabled />
+                        </div>
+                        <div className="form-control w-full md:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Organizer Name</span>
+                            </label>
+                            <input type="text" name="organizer_name" defaultValue={user?.displayName} className="input input-sm input-bordered text-xs" disabled />
+                        </div>
                     </div>
-                    <div className='flex justify-end mt-6'>
-                        <button className='px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'>
-                            Save
-                        </button>
+
+                    <div className="form-control mt-6">
+                        <button className="btn btn-sm btn-primary">Add Post</button>
                     </div>
                 </form>
-            </section>
+            </div>
         </div>
     );
 };

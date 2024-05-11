@@ -16,8 +16,8 @@ const SwipperSlider = () => {
             navigation
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log('slide change')}
         >
             <SwiperSlide>
                 <div style={{ backgroundImage: "url('https://i.ibb.co/By6syTs/birmingham-museums-trust-w-Kl-Hsoo-RVbg-unsplash.jpg')" }} className='bg-blend-overlay bg-[#454c4ee2] p-16 md:p-24 rounded-lg bg-no-repeat bg-cover bg-center text-center'>

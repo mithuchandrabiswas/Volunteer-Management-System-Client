@@ -9,6 +9,10 @@ import AddVolunteerPost from "../pages/addVounteerPost/AddVolunteerPost";
 import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
 import UpdateVolunteerPost from "../pages/updateVolunteerPost/UpdateVolunteerPost";
 import PrivateRoutes from '../routes/PrivateRoutes'
+import NeedVolunteerDetails from "../pages/detailsPage/NeedVolunteerDetails";
+import VolunteerNeedSection from "../components/volunteerNeedSection/VolunteerNeedSection";
+import VolunteerNeedSectionCard from "../components/volunteerNeedSection/VolunteerNeedSectionCard";
+import VolunteerNeedSectionDetails from "../pages/detailsPage/VolunteerNeedSectionDetails";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +29,16 @@ const router = createBrowserRouter([
                 element: <NeedVolunteer />,
             },
             {
+                path: "/volunteer-need-section-details/:id",
+                element: <VolunteerNeedSectionDetails />,
+                loader: () => fetch('https://volunteer-management-server.vercel.app/volunteers'),
+            },
+            {
+                path: "/need-volunteer-details/:id",
+                element: <NeedVolunteerDetails />,
+                loader: () => fetch('https://volunteer-management-server.vercel.app/volunteers'),
+            },
+            {
                 path: "/add-volunteer-post",
                 element: <PrivateRoutes><AddVolunteerPost /></PrivateRoutes>,
             },
@@ -33,7 +47,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoutes><ManageMyPost /></PrivateRoutes>,
             },
             {
-                path: "/updatejob/:id",
+                path: "/updateVolunteerPost/:id",
                 element: <UpdateVolunteerPost />,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`)
             },
