@@ -2,7 +2,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaRegUserCircle } from "react-icons/fa";
 // import { IoIosTime } from "react-icons/io";
 import { MdEmail, MdOutlinePriceChange } from "react-icons/md";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 
 const NeedVolunteerDetails = () => {
     const volunteersData = useLoaderData();
@@ -11,7 +11,7 @@ const NeedVolunteerDetails = () => {
 
     // find Method Use for achive singleCraft
     const volunteerData = volunteersData.find(item => item._id == id);
-    const { _id, thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name   } =volunteerData;
+    const { _id, thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name } = volunteerData;
     // console.log(volunteerData);
     return (
         <div className="py-4 px-3 flex flex-col md:flex-row bg-red-50 rounded">
@@ -36,6 +36,9 @@ const NeedVolunteerDetails = () => {
                 <div className="flex justify-between">
                     <p className="flex items-center gap-1 text-xs text-gray-600">  <AiFillLike /> {new Date(deadline).toLocaleDateString()}</p>
                     <p className="flex items-center gap-1 text-xs text-gray-600"><MdOutlinePriceChange />${location}</p>
+                </div>
+                <div className='text-center'>
+                    <Link to={`/be-a-volunteer/${id}`}><button className='btn btn-primary btn-sm'>Be a Volunteer</button></Link>
                 </div>
             </div>
         </div>

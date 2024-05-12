@@ -2,6 +2,7 @@ import {useEffect, useState } from 'react';
 // import { Fade } from 'react-awesome-reveal';
 import VolunteerNeedSectionCard from './VolunteerNeedSectionCard';
 import useAuthContext from '../../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
 // import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const VolunteerNeedSection = () => {
@@ -46,6 +47,9 @@ const VolunteerNeedSection = () => {
                     ))}
                 </div>
             )}
+            <div className='text-center'>
+                <Link to={'need-volunteer'}><button className='btn btn-primary btn-sm'>See all </button></Link>
+            </div>
         </div>
     );
 };

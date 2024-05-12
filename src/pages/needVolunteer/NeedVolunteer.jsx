@@ -70,9 +70,10 @@ const NeedVolunteer = () => {
               className='border p-4 rounded-lg'
             >
               <option value=''>Filter By Category</option>
-              <option value='Web Development'>Web Development</option>
-              <option value='Graphics Design'>Graphics Design</option>
-              <option value='Digital Marketing'>Digital Marketing</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Education">Education</option>
+              <option value="Social service">Social service</option>
+              <option value="Animal welfare">Animal welfare</option>
             </select>
           </div>
 
