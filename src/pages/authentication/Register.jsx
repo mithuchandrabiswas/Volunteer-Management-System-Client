@@ -1,11 +1,10 @@
 import { useForm } from "react-hook-form"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState } from 'react';
 import useAuthContext from "../../hooks/useAuthContext";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const { createUser, updateUserProfile, logOutUser } = useAuthContext();

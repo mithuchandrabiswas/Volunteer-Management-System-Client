@@ -10,8 +10,6 @@ import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
 import UpdateVolunteerPost from "../pages/updateVolunteerPost/UpdateVolunteerPost";
 import PrivateRoutes from '../routes/PrivateRoutes'
 import NeedVolunteerDetails from "../pages/detailsPage/NeedVolunteerDetails";
-import VolunteerNeedSection from "../components/volunteerNeedSection/VolunteerNeedSection";
-import VolunteerNeedSectionCard from "../components/volunteerNeedSection/VolunteerNeedSectionCard";
 import VolunteerNeedSectionDetails from "../pages/detailsPage/VolunteerNeedSectionDetails";
 import BeVolunteer from "../pages/beVolunteer/BeVolunteer";
 

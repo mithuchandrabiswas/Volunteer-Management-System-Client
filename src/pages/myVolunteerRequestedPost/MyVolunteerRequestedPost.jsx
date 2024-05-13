@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet";
 
 const MyVolunteerRequestedPost = () => {
     return (
         <div>
+            <Helmet>
+                <title>UnityVolunteer|My Volunteer Request Post</title>
+            </Helmet>
             <h1>My Volunteer Requested Post</h1>
         </div>
     );

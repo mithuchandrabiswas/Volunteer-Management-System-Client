@@ -26,7 +26,7 @@ const LogIn = () => {
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.log(error);
-      alert("Google Sign In Failed");
+      toast.error("Google Sign In Failed");
     }
   }
 
@@ -37,11 +37,11 @@ const LogIn = () => {
       console.log(result);
       const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
       // console.log("token", data);
-      alert("User sign in by Google");
+      toast.success("User sign in by Google");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.log(error);
-      alert("Google Sign In Failed:", error);
+      toast.error("Google Sign In Failed:", error);
     }
   }
 
@@ -52,11 +52,11 @@ const LogIn = () => {
       console.log(result);
       const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
       // console.log("token", data);
-      alert("User sign in by github");
+      toast.success("User sign in by github");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.log(error);
-      alert("GitHub Sign In Failed:", error);
+      toast.error("GitHub Sign In Failed:", error);
     }
   }
 

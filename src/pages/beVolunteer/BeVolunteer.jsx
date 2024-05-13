@@ -36,7 +36,7 @@ const BeVolunteer = () => {
         const volunteer_email = form.volunteer_email.value;
         const volunteer_name = form.volunteer_name.value;
         if (organizer_email === volunteer_email) {
-            return toast.error("Sorry you don't send request because you are onwer of this post");
+            return toast.error("sorry action not permitted");
         }
         const volunteerRequestPostData = { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name, volunteer_email, volunteer_name }
         // console.log(volunteerRequestPostData);
@@ -46,7 +46,7 @@ const BeVolunteer = () => {
             const { data } = await axiosCus.post(`/request-volunteer-post`, volunteerRequestPostData)
             console.log(data);
             toast.success("Request send successfully");
-            // navigate('/manage-my-post')
+            navigate('/manage-my-post')
             if(!user) {
                 navigate('/login')
             }

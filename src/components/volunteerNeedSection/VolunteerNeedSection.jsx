@@ -3,17 +3,14 @@ import {useEffect, useState } from 'react';
 import VolunteerNeedSectionCard from './VolunteerNeedSectionCard';
 import useAuthContext from '../../hooks/useAuthContext';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-// import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const VolunteerNeedSection = () => {
     const { loading, setLoading } = useAuthContext();
-    // const axiosCus = useAxiosSecure();
     const [loadedData, setLoadedData] = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        fetch('https://volunteer-management-server.vercel.app/volunteers')
+        fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteers`)
             .then(res => res.json())
             .then((data) => {
                 setLoadedData(data);
