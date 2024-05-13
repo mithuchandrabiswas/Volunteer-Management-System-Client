@@ -88,7 +88,7 @@ const NavBar = () => {
                         </li>
                     </ul>
                 </div>
-                <Link to={"/"} className="text-md md:text-xl font-bold text-cyan-600">Artis<span className="text-amber-400">tic</span>
+                <Link to={"/"} className="text-md md:text-xl font-bold text-cyan-600">Unity<span className="text-amber-400">Volunteer</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
