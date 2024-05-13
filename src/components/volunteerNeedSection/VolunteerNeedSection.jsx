@@ -25,7 +25,7 @@ const VolunteerNeedSection = () => {
     const sliceMaxSixData = loadedData.slice(0, 6);
 
     return (
-        <div className='bg-green-50 my-4 p-1 rounded-md'>
+        <div className='bg-[#9ba1ab2d] p-1 rounded-md container mx-auto my-10'>
             <div className='py-2 md:py-4'>
                 {/* <Fade> */}
                     <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Volunteer Need Section</h1>
@@ -45,8 +45,8 @@ const VolunteerNeedSection = () => {
                     ))}
                 </div>
             )}
-            <div className='text-center'>
-                <Link to={'need-volunteer'}><button className='btn btn-primary btn-sm'>See all </button></Link>
+            <div className='text-center mt-5'>
+                <Link to={'need-volunteer'}><button className='btn btn-accent btn-sm w-full'>See all </button></Link>
             </div>
         </div>
     );

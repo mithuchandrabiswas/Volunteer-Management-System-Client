@@ -1,31 +1,37 @@
+import { IoTime } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import useAuthContext from "../../hooks/useAuthContext";
+import { CiMail } from "react-icons/ci";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const NeedVolunteerCard = ({ volunteer }) => {
-  const { _id, thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name } = volunteer || {};
+  const { user } = useAuthContext();
+  console.log(user);
+  const { _id, thumbnail, post_title, category, deadline, organizer_email, organizer_name } = volunteer || {};
   return (
-    <Link to={`/need-volunteer-details/${_id}`} className='w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all'>
-      <div className='flex items-center justify-between'>
-        <span className='text-xs font-light text-gray-800 '>
-          Deadline: {new Date(deadline).toLocaleDateString()}
-        </span>
-        <span className='px-3 py-1 text-[8px] text-blue-800 uppercase bg-blue-200 rounded-full '>
-          {category}
-        </span>
-      </div>
 
-      <div>
-        <h1 className='mt-2 text-lg font-semibold text-gray-800 '>
-          {post_title}
-        </h1>
-
-        <p title={description} className='mt-2 text-sm text-gray-600 '>
-          {description.substring(0, 15)}...
-        </p>
-        <p className='mt-2 text-sm font-bold text-gray-600 '>
-          Location: {location}
-        </p>
+    <div className="shadow-lg border bg-white hover:scale-105 transition">
+      <img className="rounded w-full h-[50vh]" src={thumbnail} alt="" />
+      <div className="py-4 px-2 text-left  rounded-md space-y-1">
+        <h1 className="font-bold">{category}</h1>
+        <h3 className="text-[#F1C40F] text-xs lg:text-md text-left">{post_title}</h3>
+        <p className="flex items-center gap-1 text-xs text-gray-600">  <IoTime className="text-red-600" /> <span className="text-red-600">Deadline:</span> {new Date(deadline).toLocaleDateString()}</p>
       </div>
-    </Link>
+      <div className="flex items-center flex-col md:flex-row gap-2 mb-1">
+        <img className="w-8 h-8 rounded-full flex ml-1" src={user?.photoURL} alt="" />
+        <div className="flex flex-col">
+          <div className="flex">
+            <FaRegUserCircle className="text-[#E74C3C]" />
+            <p className="text-xs font-bold ml-1">{organizer_name}</p>
+          </div>
+          <div className="flex">
+            <CiMail className="text-[#E74C3C]" />
+            <p className="text-[10px] ml-1"> {organizer_email}</p>
+          </div>
+        </div>
+      </div>
+      <Link to={`/need-volunteer-details/${_id}`} className="btn btn-sm btn-secondary w-full">View Details</Link>
+    </div>
   )
 }
 

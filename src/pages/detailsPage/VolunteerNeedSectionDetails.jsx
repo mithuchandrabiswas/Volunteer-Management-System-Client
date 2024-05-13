@@ -1,48 +1,62 @@
 import { Helmet } from "react-helmet";
-import { AiFillLike } from "react-icons/ai";
+import { CiMail } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
-import { MdEmail, MdOutlinePriceChange } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
+import { IoTime } from "react-icons/io5";
 import { Link, useLoaderData, useParams } from "react-router-dom";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const VolunteerNeedSectionDetails = () => {
     const volunteersData = useLoaderData();
     const { id } = useParams();
+    const { user } = useAuthContext();
+
     // console.log(volunteersData);
 
     // find Method Use for achive singleCraft
     const volunteerData = volunteersData.find(item => item._id == id);
-    const { _id, thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name   } =volunteerData;
+    const { _id, thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name } = volunteerData;
     // console.log(volunteerData);
     return (
-        <div className="py-4 px-3 flex flex-col md:flex-row bg-red-50 rounded">
+        <div className="py-4 px-3 flex flex-col-reverse lg:flex-row justify-center items-center bg-[#10101034] rounded mt-20 border">
             <Helmet>
                 <title>UnityVolunteer | Need Volunteer Details Page</title>
             </Helmet>
-            <div className="relative md:w-1/2 mb-5 md:mb-0">
-                <img className="rounded w-full h-full" src={thumbnail} alt="" />
-                <span className="absolute top-0 right-2 text-red-600 text-xs rounded-md">{total_volunteer_need}</span>
-            </div>
-            <div className="px-1 md:px-4 space-y-2 md:w-1/2">
-                <span className="bg-blue-200 px-2 py-1 rounded-lg text-[#111] font-bold text-xs lg:text-lg text-left">{category}</span>
-                <div className="flex justify-between items-start md:items-center flex-col md:flex-row gap-y-2">
-                    <div className="flex justify-between  gap-1">
-                        <FaRegUserCircle />
-                        <p className="flex items-center gap-1 text-xs text-gray-600">  {organizer_name}</p>
-                    </div>
-                    <div className="flex justify-between gap-1">
-                        <MdEmail />
-                        <p className="flex items-center gap-1 text-xs text-gray-600">{organizer_email}</p>
-                    </div>
-                </div>
-                <h3 className="text-sm md:text-md font-bold text-[#5a7f81]">{post_title}</h3>
+
+            <div className="px-1 w-full md:px-4 space-y-2 lg:w-1/2">
+                <h3 className="text-[#111] font-bold text-xs lg:text-lg text-left">{category}</h3>
+                <h1 className="text-sm md:text-lg font-bold text-[#5a7f81]">{post_title}</h1>
                 <h3 className="text-xs lg:text-base font-bold">{description}</h3>
-                <div className="flex justify-between">
-                    <p className="flex items-center gap-1 text-xs text-gray-600">  <AiFillLike /> {deadline}</p>
-                    <p className="flex items-center gap-1 text-xs text-gray-600"><MdOutlinePriceChange />${location}</p>
+                <div className="flex flex-col md:flex-row justify-between">
+                    <div className="flex items-center">
+                        <IoTime className="text-red-600 mr-2" />
+                        <p className="flex items-center gap-1 text-xs text-gray-600"> {new Date(deadline).toLocaleDateString()}</p>
+                    </div>
+                    <div className="flex items-center">
+                        <FaLocationDot className="text-[#E74C3C]" />
+                        <p className="flex items-center gap-1 text-xs text-gray-600"> {location}</p>
+                    </div>
                 </div>
-                <div className='text-center'>
-                    <Link to={`/be-a-volunteer/${id}`}><button className='btn btn-primary btn-sm'>Be a Volunteer</button></Link>
+                <div className="flex items-center  flex-col md:flex-row gap-4 mb-1">
+                    <img className="w-8 h-8 rounded-full flex ml-1" src={user?.photoURL} alt="" />
+                    <div className="flex flex-col">
+                        <div className="flex">
+                            <FaRegUserCircle className="text-[#E74C3C]" />
+                            <p className="text-xs font-bold ml-1">{organizer_name}</p>
+                        </div>
+                        <div className="flex">
+                            <CiMail className="text-[#E74C3C]" />
+                            <p className="text-[10px] ml-1"> {organizer_email}</p>
+                        </div>
+                    </div>
                 </div>
+                <div className='text-center w-full'>
+                    <Link to={`/be-a-volunteer/${id}`}><button className='btn btn-primary btn-sm w-full'>Be a Volunteer</button></Link>
+                </div>
+            </div>
+            <div className="relative w-full lg:w-1/2 mb-5 md:mb-0">
+                <img className="rounded w-full h-[75vh]" src={thumbnail} alt="" />
+                <span className="absolute top-0 right-2 text-red-500 text-xs rounded-md"> <span className="text-white">Remaining Post: </span>{total_volunteer_need}</span>
             </div>
         </div>
     );

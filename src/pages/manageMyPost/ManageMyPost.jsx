@@ -4,11 +4,12 @@ import toast from 'react-hot-toast';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuthContext from '../../hooks/useAuthContext';
 import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
 
 const ManageMyPost = () => {
   const axiosCus = useAxiosSecure();
   const { user } = useAuthContext();
-  console.log(user.email);
+  // console.log(user.email);
   const [volunteers, setVolunteers] = useState([]);
   const [volunteersRequest, setVolunteersRequest] = useState([]);
 
@@ -30,16 +31,30 @@ const ManageMyPost = () => {
       toast.error("Error fetching data. Please try again later.");
     }
   };
+console.log(volunteers);
 
   const handleVolunterPostDelete = async (id) => {
-    try {
-      await axiosCus.delete(`/volunteer/${id}`);
-      toast.success('Delete Successful');
-      getVolunteerData(); // Refresh data after deletion
-    } catch (error) {
-      console.error("Error deleting post:", error);
-      toast.error("Error deleting post. Please try again later.");
-    }
+    // Show confirmation before delete
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axiosCus.delete(`/volunteer/${id}`);
+          toast.success('Delete Successful');
+          getVolunteerData(); // Refresh data after deletion
+        } catch (error) {
+          console.error("Error deleting post:", error);
+          toast.error("Error deleting post. Please try again later.");
+        }
+      }
+    });
   };
   // ====> For Volunteer Post: End
 
@@ -62,16 +77,30 @@ const ManageMyPost = () => {
   };
 
   const handleVolunterRequestDelete = async (id) => {
-    try {
-      await axiosCus.delete(`/request-volunteer-post-sData/${id}`);
-      toast.success('Delete Successful');
-      getVolunteerRequestData(); 
-    } catch (error) {
-      console.error("Error deleting post:", error);
-      toast.error("Error deleting post. Please try again later.");
-    }
+    // Show confirmation before delete
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axiosCus.delete(`/request-volunteer-post-sData/${id}`);
+          toast.success('Delete Successful');
+          getVolunteerRequestData();
+        } catch (error) {
+          console.error("Error deleting post:", error);
+          toast.error("Error deleting post. Please try again later.");
+        }
+      }
+    })
   };
 
+  console.log(volunteersRequest);
 
   return (
     <>

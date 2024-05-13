@@ -5,7 +5,7 @@ import Footer from "../components/shared/Footer"
 
 const Root = () => {
     return (
-        <div className='mx-10'>
+        <div>
             <NavBar></NavBar>
             <div className='min-h-[calc(100vh-466px)]'>
                 <Outlet></Outlet>

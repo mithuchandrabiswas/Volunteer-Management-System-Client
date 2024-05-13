@@ -4,7 +4,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Helmet } from 'react-helmet';
 // import { Typewriter } from 'react-simple-typewriter';
 
 const SwipperSlider = () => {
@@ -20,7 +19,7 @@ const SwipperSlider = () => {
         // onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log('slide change')}
         >
-            <SwiperSlide>
+            <SwiperSlide className='mt-16'>
                 <div style={{ backgroundImage: "url('https://i.ibb.co/By6syTs/birmingham-museums-trust-w-Kl-Hsoo-RVbg-unsplash.jpg')" }} className='bg-blend-overlay bg-[#454c4ee2] p-16 md:p-24 rounded-lg bg-no-repeat bg-cover bg-center text-center'>
                     <h1 className='font-bold z-40 text-xl md:text-2xl text-white'>
                         {/* <span className='text-[#F1C40F]'>
