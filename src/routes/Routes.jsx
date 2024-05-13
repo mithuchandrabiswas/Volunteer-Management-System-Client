@@ -32,12 +32,12 @@ const router = createBrowserRouter([
             {
                 path: "/volunteer-need-section-details/:id",
                 element: <PrivateRoutes><VolunteerNeedSectionDetails /></PrivateRoutes>,
-                loader: () => fetch('https://volunteer-management-server.vercel.app/volunteers'),
+                loader: () => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteers`),
             },
             {
                 path: "/need-volunteer-details/:id",
                 element: <PrivateRoutes><NeedVolunteerDetails /></PrivateRoutes>,
-                loader: () => fetch('https://volunteer-management-server.vercel.app/volunteers'),
+                loader: () => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteers`),
             },
             {
                 path: "/add-volunteer-post",
@@ -50,12 +50,14 @@ const router = createBrowserRouter([
             {
                 path: "/be-a-volunteer/:id",
                 element: <BeVolunteer />,
-                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`)
+                // loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`),
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`),
             },
             {
                 path: "/updateVolunteerPost/:id",
                 element: <UpdateVolunteerPost />,
-                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`)
+                // loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`),
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCAL_API_URL}/volunteer/${params.id}`),
             },
             {
                 path: "/login",

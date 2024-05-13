@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const AddVolunteerPost = () => {
     const { user } = useAuthContext(); // custom hook
@@ -43,6 +44,9 @@ const AddVolunteerPost = () => {
 
     return (
         <div className="bg-green-50 my-4 p-1 rounded-md">
+            <Helmet>
+                <title>UnityVolunteer | Add Volunteer Post</title>
+            </Helmet>
             <div className='py-2 md:py-4'>
                 <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Add Volunteer</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, id voluptatum labore asperiores, molestias libero ab dicta dolor earum animi enim perspiciatis necessitatibus cum repellat.</p>

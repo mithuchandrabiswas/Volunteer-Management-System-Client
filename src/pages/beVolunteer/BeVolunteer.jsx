@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import useAuthContext from '../../hooks/useAuthContext'
 import { useState } from 'react'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
+import { Helmet } from 'react-helmet'
 
 const BeVolunteer = () => {
     const navigate = useNavigate()
@@ -56,6 +57,9 @@ const BeVolunteer = () => {
 
     return (
         <div className="bg-green-50 my-4 p-1 rounded-md">
+            <Helmet>
+                <title>UnityVolunteer | Be a Volunteer</title>
+            </Helmet>
             <div className='py-2 md:py-4'>
                 <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Request Volunteer Post</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, id voluptatum labore asperiores, molestias libero ab dicta dolor earum animi enim perspiciatis necessitatibus cum repellat.</p>

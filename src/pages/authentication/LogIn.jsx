@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
+
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import axios from "axios";
+import useAuthContext from "../../hooks/useAuthContext";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signInUser, googleLogIn, githubLogIn} = useContext(AuthContext);
+  const { signInUser, googleLogIn, githubLogIn } = useAuthContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,9 +20,9 @@ const LogIn = () => {
     try {
       const result = await signInUser(dataOne.email, dataOne.password);
       console.log(result);
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, {email: result?.user?.email},{withCredentials:true})
-      console.log("token", data);
-      alert("User sign in by successfully");
+      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
+      // console.log("token", data);
+      toast.success("User sign in by successfully");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.log(error);
@@ -32,8 +35,8 @@ const LogIn = () => {
     try {
       const result = await googleLogIn();
       console.log(result);
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, {email: result?.user?.email},{withCredentials:true})
-      console.log("token", data);
+      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
+      // console.log("token", data);
       alert("User sign in by Google");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
@@ -47,8 +50,8 @@ const LogIn = () => {
     try {
       const result = await githubLogIn();
       console.log(result);
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, {email: result?.user?.email},{withCredentials:true})
-      console.log("token", data);
+      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
+      // console.log("token", data);
       alert("User sign in by github");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
@@ -59,6 +62,9 @@ const LogIn = () => {
 
   return (
     <div className="flex justify-center items-center flex-col md:flex-row gap-5 bg-cover">
+      <Helmet>
+        <title>UnityVolunteer | Login</title>
+      </Helmet>
       <div>
         <img src="https://i.ibb.co/sgJ9Fpz/login.jpg" alt="" />
       </div>

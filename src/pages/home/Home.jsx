@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import SwipperSlider from "../../components/SwipperSlider";
 import VolunteerNeedSection from "../../components/volunteerNeedSection/VolunteerNeedSection";
 
@@ -5,6 +6,9 @@ import VolunteerNeedSection from "../../components/volunteerNeedSection/Voluntee
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>UnityVolunteer | Home</title>
+            </Helmet>
             <SwipperSlider></SwipperSlider>
             <VolunteerNeedSection></VolunteerNeedSection>
         </div>
