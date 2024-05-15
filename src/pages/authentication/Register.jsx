@@ -2,11 +2,10 @@
 import { useForm } from "react-hook-form"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState } from 'react';
 import useAuthContext from '../../hooks/useAuthContext'
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { user, createUser, logOutUser, updateUserProfile, loading } = useAuthContext();
@@ -37,7 +36,6 @@ const Register = () => {
             .then((userCredencial) => {
                 updateUserProfile(fullName, photoUrl)
                     .then(() => {
-                        toast.success("User registered successfully");
                         logOutUser()
                             .then(() => {
                                 navigate("/login");
@@ -47,7 +45,6 @@ const Register = () => {
                     })
                     .catch((error) => {
                         console.log(error);
-                        toast.error("Error updating user profile");
                     });
                 console.log(userCredencial);
             })
@@ -67,7 +64,6 @@ const Register = () => {
                 <title>CareOX | Register </title>
             </Helmet>
             <div className="card shrink-0 w-full max-w-sm my-2 md:my-5 shadow-2xl bg-[#71707080] py-3">
-                <ToastContainer />
                 <legend className="font-bold text-center"> Registration Form </legend>
                 <fieldset>
                     <form ref={formRef} onSubmit={handleSubmit(handleRegister)} className="card-body p-4">
