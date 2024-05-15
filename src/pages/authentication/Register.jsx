@@ -1,19 +1,25 @@
+
 import { useForm } from "react-hook-form"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState } from 'react';
-import useAuthContext from "../../hooks/useAuthContext";
-import { Helmet } from "react-helmet";
-import { toast } from "react-toastify";
+import useAuthContext from '../../hooks/useAuthContext'
 
 const Register = () => {
-    const { createUser, updateUserProfile, logOutUser } = useAuthContext();
+    const { user, createUser, logOutUser, updateUserProfile, loading } = useAuthContext();
     const location = useLocation();
     const navigate = useNavigate();
     const formRef = useRef(null);
 
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors }, } = useForm();
+
+    // When user login
+    if (user) {
+        navigate('/')
+    }
 
     const handleRegister = (data) => {
         const { email, password, fullName, photoUrl } = data;
@@ -25,42 +31,42 @@ const Register = () => {
 
         createUser(email, password)
             .then(() => {
-                toast.success("User register successfully");
-                navigate("/login");
+                toast.success("User registered successfully");
             })
-            // .then((userCredencial) => {
-            //     updateUserProfile(fullName, photoUrl)
-            //         .then(() => {
-            //             logOutUser()
-            //                 .then(() => {
-            //                     toast.success("User logout successfully");
-            //                     navigate("/login");
-            //                 })
-            //             navigate(location?.state ? location.state : "/");
-            //             formRef.current.reset();
-            //         })
-            //         .catch((error) => {
-            //             console.log(error);
-            //             toast.error("Error updating user profile");
-            //         });
-            //     console.log(userCredencial);
-            // })
+            .then((userCredencial) => {
+                updateUserProfile(fullName, photoUrl)
+                    .then(() => {
+                        toast.success("User registered successfully");
+                        logOutUser()
+                            .then(() => {
+                                navigate("/login");
+                            })
+                        navigate(location?.state ? location.state : "/");
+                        formRef.current.reset();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        toast.error("Error updating user profile");
+                    });
+                console.log(userCredencial);
+            })
             .catch((error) => {
                 console.log(error);
                 toast.error(error.message);
             });
     }
 
+    if (user || loading) {
+        return <p>Loading .....</p>
+    }
+
     return (
-        <div className="flex justify-center items-center flex-col md:flex-row gap-5 bg-cover">
-            <Helmet>
-                <title>UnityVolunteer | Register</title>
-            </Helmet>
-            <div>
-                <img src="https://i.ibb.co/sgJ9Fpz/login.jpg" alt="" />
-            </div>
+        <div className="hero min-h-screen sm:bg-[url('https://i.ibb.co/nCRXBkF/pexels-vecislavas-popa-1571470.jpg')] bg-cover">
+            {/* <Helmet>
+                <title>CareOX | Register </title>
+            </Helmet> */}
             <div className="card shrink-0 w-full max-w-sm my-2 md:my-5 shadow-2xl bg-[#71707080]">
-                
+                <ToastContainer />
                 <form ref={formRef} onSubmit={handleSubmit(handleRegister)} className="card-body p-4">
                     <div className="form-control">
                         <label className="label">

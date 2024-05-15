@@ -31,7 +31,7 @@ const ManageMyPost = () => {
       toast.error("Error fetching data. Please try again later.");
     }
   };
-console.log(volunteers);
+  // console.log(volunteers);
 
   const handleVolunterPostDelete = async (id) => {
     // Show confirmation before delete
@@ -100,13 +100,13 @@ console.log(volunteers);
     })
   };
 
-  console.log(volunteersRequest);
+  // console.log(volunteersRequest);
 
   return (
-    <>
+    <div className='mt-16'>
       <section className='container px-4 mx-auto pt-12'>
         <Helmet>
-          <title>UnityVolunteer | Manage My Post</title>
+          <title>CareOX | Manage My Post</title>
         </Helmet>
         <div className='flex items-center gap-x-3 justify-center'>
           <h2 className='text-lg font-medium text-gray-800'>My Volunteers Post</h2>
@@ -246,7 +246,7 @@ console.log(volunteers);
             </div>
         }
       </section>
-    </>
+    </div>
   );
 };
 

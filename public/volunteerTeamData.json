@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "name": "John Smith",
+    "position": "Volunteer Coordinator",
+    "email": "john@example.com",
+    "phone": "+1 (555) 123-4567",
+    "bio": "John has been with our organization for 5 years. He is passionate about community service and loves organizing events that make a positive impact.",
+    "social": {
+      "facebook": "https://www.facebook.com/johnsmith",
+      "twitter": "https://twitter.com/johnsmith",
+      "linkedin": "https://www.linkedin.com/in/johnsmith"
+    },
+    "image": "https://i.ibb.co/f0PDnHC/team-6.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Emily Johnson",
+    "position": "Event Planner",
+    "email": "emily@example.com",
+    "phone": "+1 (555) 987-6543",
+    "bio": "Emily is an expert in event planning. With her creative ideas and attention to detail, she ensures our events run smoothly and successfully.",
+    "social": {
+      "facebook": "https://www.facebook.com/emilyjohnson",
+      "twitter": "https://twitter.com/emilyjohnson",
+      "linkedin": "https://www.linkedin.com/in/emilyjohnson"
+    },
+    "image": "https://i.ibb.co/tsXK6jF/team-3.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Michael Brown",
+    "position": "Communications Manager",
+    "email": "michael@example.com",
+    "phone": "+1 (555) 555-6789",
+    "bio": "Michael handles all communications for our organization. He is skilled in social media management and public relations.",
+    "social": {
+      "facebook": "https://www.facebook.com/michaelbrown",
+      "twitter": "https://twitter.com/michaelbrown",
+      "linkedin": "https://www.linkedin.com/in/michaelbrown"
+    },
+    "image": "https://i.ibb.co/tpMmmMt/team-7.jpg"
+  },
+  {
+    "id": 5,
+    "name": "David Wilson",
+    "position": "Community Outreach Specialist",
+    "email": "david@example.com",
+    "phone": "+1 (555) 222-3333",
+    "bio": "David is dedicated to reaching out to the community. He connects with local organizations and individuals to expand our outreach.",
+    "social": {
+      "facebook": "https://www.facebook.com/davidwilson",
+      "twitter": "https://twitter.com/davidwilson",
+      "linkedin": "https://www.linkedin.com/in/davidwilson"
+    },
+    "image": "https://i.ibb.co/ZJpSJJW/team-2.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Jennifer Lee",
+    "position": "Volunteer Trainer",
+    "email": "jennifer@example.com",
+    "phone": "+1 (555) 777-8888",
+    "bio": "Jennifer conducts training sessions for our volunteers, ensuring they are well-prepared for their roles.",
+    "social": {
+      "facebook": "https://www.facebook.com/jenniferlee",
+      "twitter": "https://twitter.com/jenniferlee",
+      "linkedin": "https://www.linkedin.com/in/jenniferlee"
+    },
+    "image": "https://i.ibb.co/2hLR5Ng/team-8.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Jessica Thompson",
+    "position": "Volunteer Recruiter",
+    "email": "jessica@example.com",
+    "phone": "+1 (555) 666-7777",
+    "bio": "Jessica recruits new volunteers to join our cause. She is passionate about spreading awareness and engaging others in community service.",
+    "social": {
+      "facebook": "https://www.facebook.com/jessicathompson",
+      "twitter": "https://twitter.com/jessicathompson",
+      "linkedin": "https://www.linkedin.com/in/jessicathompson"
+    },
+    "image": "https://i.ibb.co/5rXSdhF/team-5.jpg"
+  }
+]
+
+  

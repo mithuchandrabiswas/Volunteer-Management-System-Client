@@ -1,18 +1,25 @@
-
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import axios from "axios";
 import useAuthContext from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signInUser, googleLogIn, githubLogIn } = useAuthContext();
+  const { signInUser, googleLogIn, githubLogIn, user, loading } = useAuthContext();
+  const axiosCus = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
+
+  // for login user redirect to home page
+  useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+  }, [navigate, user])
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -20,7 +27,7 @@ const LogIn = () => {
     try {
       const result = await signInUser(dataOne.email, dataOne.password);
       console.log(result);
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
+      const { data } = await axiosCus.post(`/jwt`, { email: result?.user?.email })
       // console.log("token", data);
       toast.success("User sign in by successfully");
       navigate(location?.state ? location.state : "/");
@@ -35,8 +42,8 @@ const LogIn = () => {
     try {
       const result = await googleLogIn();
       console.log(result);
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
-      // console.log("token", data);
+      const { data } = await axiosCus.post(`/jwt`, { email: result?.user?.email })
+      console.log("token", data);
       toast.success("User sign in by Google");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
@@ -50,7 +57,7 @@ const LogIn = () => {
     try {
       const result = await githubLogIn();
       console.log(result);
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/jwt`, { email: result?.user?.email }, { withCredentials: true })
+      const { data } = await axiosCus.post(`/jwt`, { email: result?.user?.email })
       // console.log("token", data);
       toast.success("User sign in by github");
       navigate(location?.state ? location.state : "/");
@@ -60,10 +67,12 @@ const LogIn = () => {
     }
   }
 
+  if(user || loading) return
+
   return (
-    <div className="flex justify-center items-center flex-col md:flex-row gap-5 bg-cover">
+    <div className="flex justify-center items-center flex-col md:flex-row gap-5 bg-cover my-16">
       <Helmet>
-        <title>UnityVolunteer | Login</title>
+        <title>CareOX | Login</title>
       </Helmet>
       <div>
         <img src="https://i.ibb.co/sgJ9Fpz/login.jpg" alt="" />

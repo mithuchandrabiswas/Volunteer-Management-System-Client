@@ -6,8 +6,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 const NeedVolunteerCard = ({ volunteer }) => {
   const { user } = useAuthContext();
-  console.log(user);
-  const { _id, thumbnail, post_title, category, deadline, organizer_email, organizer_name } = volunteer || {};
+  // console.log(user);
+  const { _id, thumbnail, post_title, category, deadline, organizer_email, organizer_name, organizer_photo } = volunteer || {};
   return (
 
     <div className="shadow-lg border bg-white hover:scale-105 transition">
@@ -18,7 +18,7 @@ const NeedVolunteerCard = ({ volunteer }) => {
         <p className="flex items-center gap-1 text-xs text-gray-600">  <IoTime className="text-red-600" /> <span className="text-red-600">Deadline:</span> {new Date(deadline).toLocaleDateString()}</p>
       </div>
       <div className="flex items-center flex-col md:flex-row gap-2 mb-1">
-        <img className="w-8 h-8 rounded-full flex ml-1" src={user?.photoURL} alt="" />
+        <img className="w-8 h-8 rounded-full flex ml-1" src={organizer_photo} alt="" />
         <div className="flex flex-col">
           <div className="flex">
             <FaRegUserCircle className="text-[#E74C3C]" />

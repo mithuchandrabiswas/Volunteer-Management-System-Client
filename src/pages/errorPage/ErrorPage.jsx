@@ -5,7 +5,7 @@ const ErrorPage = () => {
     return (
         <section className='bg-white '>
             <Helmet>
-                <title>UnityVolunteer | Error Page</title>
+                <title>CareOX | Error Page</title>
             </Helmet>
             <div className='container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12'>
                 <div className='wf-ull lg:w-1/2'>

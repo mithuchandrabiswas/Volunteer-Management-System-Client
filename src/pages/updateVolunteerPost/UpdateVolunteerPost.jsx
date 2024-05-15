@@ -46,7 +46,7 @@ const UpdateVolunteerPost = () => {
     return (
         <div className="bg-green-50 my-4 p-1 rounded-md">
             <Helmet>
-                <title>UnityVolunteer | Update Volunteer Post</title>
+                <title>CareOX | Update Volunteer Post</title>
             </Helmet>
             <div className='py-2 md:py-4'>
                 <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Update Volunteer Post</h1>

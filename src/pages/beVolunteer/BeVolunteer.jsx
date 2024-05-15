@@ -12,7 +12,7 @@ const BeVolunteer = () => {
     const navigate = useNavigate()
     const volunteerData = useLoaderData()
     // console.log(job);
-    const { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name } = volunteerData || {}
+    const { _id, thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name } = volunteerData || {}
     // console.log(volunteerData);
     const { user } = useAuthContext();
     // console.log(user);
@@ -24,6 +24,7 @@ const BeVolunteer = () => {
     const handleBeVolunteerRequest = async e => {
         e.preventDefault();
         const form = e.target;
+        const volunteerPostId = _id;
         const thumbnail = form.thumbnail.value;
         const post_title = form.post_title.value;
         const description = form.description.value;
@@ -38,17 +39,25 @@ const BeVolunteer = () => {
         if (organizer_email === volunteer_email) {
             return toast.error("sorry action not permitted");
         }
-        const volunteerRequestPostData = { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name, volunteer_email, volunteer_name }
+        if(total_volunteer_need == 0) {
+            return toast.error("sorry maximum number request reach")
+        }
+        const status = "requested";
+        const volunteerRequestPostData = { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name, volunteer_email, volunteer_name, volunteerPostId, status }
         // console.log(volunteerRequestPostData);
         // console.table(volunteerRequestPostData);
 
         try {
             const { data } = await axiosCus.post(`/request-volunteer-post`, volunteerRequestPostData)
-            console.log(data);
-            toast.success("Request send successfully");
-            navigate('/manage-my-post')
-            if(!user) {
-                navigate('/login')
+            // console.log(data);
+            if (!data.success) {
+                return toast.error(data.message)
+            } else {
+                toast.success("Request sent successfully");
+                navigate('/manage-my-post')
+                if (!user) {
+                    navigate('/login')
+                }
             }
         } catch (err) {
             toast.error(err);
@@ -56,15 +65,15 @@ const BeVolunteer = () => {
     }
 
     return (
-        <div className="bg-green-50 my-4 p-1 rounded-md">
+        <div className="my-4 p-1 rounded-md mt-16">
             <Helmet>
-                <title>UnityVolunteer | Be a Volunteer</title>
+                <title>CareOX | Be a Volunteer</title>
             </Helmet>
-            <div className='py-2 md:py-4'>
-                <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Request Volunteer Post</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, id voluptatum labore asperiores, molestias libero ab dicta dolor earum animi enim perspiciatis necessitatibus cum repellat.</p>
+            <div className='py-2 md:py-4 space-y-1'>
+                <h1 className='text-center text-lg md:text-2xl font-bold text-[#a95757]'>Request Volunteer Post</h1>
+                <p className="text-xs md:text-md text-center w-full md:w-2/3 md:mx-auto text-[#8f8484]">Looking for a chance to make a direct impact in communities hit by natural disasters? Join us as a volunteer for short-term relief aid!</p>
             </div>
-            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#71707080]">
+            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#eddfdf5d] w-full md:w-5/6 mx-auto">
                 <form onSubmit={handleBeVolunteerRequest} className="card-body p-4">
                     {/* row-1 */}
                     <div className="flex flex-col md:flex-row  gap-4">

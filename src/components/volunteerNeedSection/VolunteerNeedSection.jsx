@@ -1,4 +1,4 @@
-import {useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { Fade } from 'react-awesome-reveal';
 import VolunteerNeedSectionCard from './VolunteerNeedSectionCard';
 import useAuthContext from '../../hooks/useAuthContext';
@@ -18,18 +18,18 @@ const VolunteerNeedSection = () => {
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
-                setLoading(false); 
+                setLoading(false);
             });
-    }, [setLoading]); 
+    }, [setLoading]);
 
     const sliceMaxSixData = loadedData.slice(0, 6);
 
     return (
         <div className='bg-[#9ba1ab2d] p-1 rounded-md container mx-auto my-10'>
-            <div className='py-2 md:py-4'>
-                {/* <Fade> */}
-                    <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Volunteer Need Section</h1>
-                {/* </Fade> */}
+            <div className='py-2 md:py-4 space-y-2'>
+
+                <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Volunteer Need Section</h1>
+                <p className='text-xs md:text-sm text-[#8a8686] w-full md:w-3/4 mx-auto'>GreenThumb Community Gardens is seeking enthusiastic volunteers to assist with our community garden projects. As a Community Garden Assistant, you will have the opportunity to work alongside our dedicated team to maintain and cultivate our beautiful green spaces.</p>
             </div>
             {loading ? (
                 <div className="flex justify-center items-center gap-4">

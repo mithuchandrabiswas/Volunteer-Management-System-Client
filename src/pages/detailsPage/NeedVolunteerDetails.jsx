@@ -14,12 +14,12 @@ const NeedVolunteerDetails = () => {
 
     // find Method Use for achive singleCraft
     const volunteerData = volunteersData.find(item => item._id == id);
-    const { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name } = volunteerData;
+    const { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name, organizer_photo } = volunteerData;
     // console.log(volunteerData);
     return (
         <div className="py-4 px-3 flex flex-col-reverse lg:flex-row justify-center items-center bg-[#10101034] rounded mt-20 border">
             <Helmet>
-                <title>UnityVolunteer | Need Volunteer Details Page</title>
+                <title>CareOX | Need Volunteer Details Page</title>
             </Helmet>
 
             <div className="px-1 w-full md:px-4 space-y-2 lg:w-1/2">
@@ -37,7 +37,7 @@ const NeedVolunteerDetails = () => {
                     </div>
                 </div>
                 <div className="flex items-center  flex-col md:flex-row gap-4 mb-1">
-                    <img className="w-8 h-8 rounded-full flex ml-1" src={user?.photoURL} alt="" />
+                    <img className="w-8 h-8 rounded-full flex ml-1" src={organizer_photo} alt="" />
                     <div className="flex flex-col">
                         <div className="flex">
                             <FaRegUserCircle className="text-[#E74C3C]" />

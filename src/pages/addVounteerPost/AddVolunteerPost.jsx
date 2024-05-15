@@ -13,10 +13,11 @@ const AddVolunteerPost = () => {
     const [startDate, setStartDate] = useState(new Date());
     const navigate = useNavigate();
 
+    const organizer_photo = user?.photoURL;
+    console.log(organizer_photo);
+
 
     const handleAddVolunteer = async (e) => {
-        // if(email === user?.email) return alert("Sorry you are not bid. Because you are onwer of this bid")
-        // if(price < min_price) return alert("min price is to low... al least equal to min price Please check")
         e.preventDefault();
         const form = e.target;
         const thumbnail = form.thumbnail.value;
@@ -24,11 +25,11 @@ const AddVolunteerPost = () => {
         const description = form.description.value;
         const category = form.category.value;
         const location = form.location.value;
-        const total_volunteer_need = form.total_volunteer_need.value;
+        const total_volunteer_need = parseInt(form.total_volunteer_need.value);
         const deadline = startDate;
         const organizer_email = form.organizer_email.value;
         const organizer_name = form.organizer_name.value;
-        const volunteerData = { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name }
+        const volunteerData = { thumbnail, post_title, description, category, location, total_volunteer_need, deadline, organizer_email, organizer_name, organizer_photo }
         // console.log(volunteerData);
         // console.table(volunteerData);
 
@@ -43,15 +44,15 @@ const AddVolunteerPost = () => {
     }
 
     return (
-        <div className="bg-green-50 my-4 p-1 rounded-md">
+        <div className="my-4 p-1 rounded-md mt-16">
             <Helmet>
-                <title>UnityVolunteer | Add Volunteer Post</title>
+                <title>CareOX | Add Volunteer Post</title>
             </Helmet>
-            <div className='py-2 md:py-4'>
-                <h1 className='text-center text-lg md:text-2xl font-bold text-[#101010]'>Add Volunteer</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, id voluptatum labore asperiores, molestias libero ab dicta dolor earum animi enim perspiciatis necessitatibus cum repellat.</p>
+            <div className='py-2 md:py-4 space-y-1'>
+                <h1 className='text-center text-lg md:text-2xl font-bold text-[#a95757]'>Add Volunteer</h1>
+                <p className="text-xs md:text-md text-center w-full md:w-2/3 md:mx-auto text-[#8f8484]">If you're ready to make a difference and join our team, please send a resume and brief cover letter outlining your interest in the position to [contact email or phone number]. We look forward to hearing from you!</p>
             </div>
-            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#71707080]">
+            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#eddfdf31] w-full md:w-5/6 mx-auto">
                 <form onSubmit={handleAddVolunteer} className="card-body p-4">
                     {/* row-1 */}
                     <div className="flex flex-col md:flex-row  gap-4">
@@ -84,7 +85,6 @@ const AddVolunteerPost = () => {
                             <label className="label">
                                 <span className="label-text">Category Name<span className="text-red-600">*</span></span>
                             </label>
-                            {/* onChange={subCategoryChange} */}
                             <select name="category" id="category" className="px-2 py-1 rounded-md text-xs">
                                 <option value="">Select your category</option>
                                 <option value="Healthcare">Healthcare</option>
