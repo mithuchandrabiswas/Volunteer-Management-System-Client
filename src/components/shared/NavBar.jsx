@@ -65,7 +65,7 @@ const NavBar = () => {
                         <li>
                             {user ? (
                                 <div className="dropdown dropdown-hover">
-                                    <div tabIndex={0}><img className="rounded-full w-8 h-8" src={user?.photoURL || <FaUserTie />} alt="User Avatar" /></div>
+                                    <div tabIndex={0}><img className="rounded-full md:w-8 h-8" src={user?.photoURL || <FaUserTie />} alt="User Avatar" /></div>
                                     <ul tabIndex={0} className="dropdown-content top-full right-0 z-[1] menu p-2 shadow bg-base-100 rounded-box w-36 md:w-52">
                                         <button className="block w-full text-left px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100">
                                             {user?.displayName || 'User Name Not Found'}
@@ -91,7 +91,7 @@ const NavBar = () => {
                         </li>
                     </ul>
                 </div>
-                <Link to={"/"} className="text-md md:text-xl font-bold text-cyan-600 md:w-14">
+                <Link to={"/"} className="text-md md:text-xl font-bold text-cyan-600">
                     <img src="https://i.ibb.co/4Y65KZj/logo-dark.png" alt="" />
                 </Link>
             </div>
