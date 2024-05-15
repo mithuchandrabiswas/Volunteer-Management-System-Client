@@ -21,7 +21,7 @@ const BeVolunteer = () => {
     const [startDate, setStartDate] = useState(new Date(deadline) || new Date());
 
     // Handle Be a Volunteer Request Function
-    const handleBeVolunteerRequest = async e => {
+    const handleBeVolunteerRequest = async (e) => {
         e.preventDefault();
         const form = e.target;
         const volunteerPostId = _id;
@@ -30,7 +30,7 @@ const BeVolunteer = () => {
         const description = form.description.value;
         const category = form.category.value;
         const location = form.location.value;
-        const total_volunteer_need = form.total_volunteer_need.value;
+        const total_volunteer_need = parseInt(form.total_volunteer_need.value);
         const deadline = startDate;
         const organizer_email = form.organizer_email.value;
         const organizer_name = form.organizer_name.value;
@@ -39,7 +39,7 @@ const BeVolunteer = () => {
         if (organizer_email === volunteer_email) {
             return toast.error("sorry action not permitted");
         }
-        if(total_volunteer_need == 0) {
+        if (total_volunteer_need == 0) {
             return toast.error("sorry maximum number request reach")
         }
         const status = "requested";
@@ -49,8 +49,8 @@ const BeVolunteer = () => {
 
         try {
             const { data } = await axiosCus.post(`/request-volunteer-post`, volunteerRequestPostData)
-            // console.log(data);
-            if (!data.success) {
+            console.log(data);
+            if (!data.acknowledged) {
                 return toast.error(data.message)
             } else {
                 toast.success("Request sent successfully");

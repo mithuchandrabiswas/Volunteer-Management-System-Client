@@ -44,7 +44,7 @@ const UpdateVolunteerPost = () => {
     }
 
     return (
-        <div className="bg-green-50 my-4 p-1 rounded-md">
+        <div className="bg-green-50 p-1 rounded-md my-16">
             <Helmet>
                 <title>CareOX | Update Volunteer Post</title>
             </Helmet>

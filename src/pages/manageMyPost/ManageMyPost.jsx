@@ -76,8 +76,8 @@ const ManageMyPost = () => {
     }
   };
 
-  const handleVolunterRequestCancel = async (id) => {
-    // Show confirmation before delete
+  const handleVolunteerRequestCancel = async (id) => {
+    // Showing confirmation before delete
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -89,15 +89,16 @@ const ManageMyPost = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          // Send request to delete the volunteer request by ID
           await axiosCus.delete(`/request-volunteer-post-sData/${id}`);
-          toast.success('Delete Successful');
+          toast.success('Cancel Successful');
           getVolunteerRequestData();
         } catch (error) {
           console.error("Error deleting post:", error);
           toast.error("Error deleting post. Please try again later.");
         }
       }
-    })
+    });
   };
 
   // console.log(volunteersRequest);
@@ -225,7 +226,7 @@ const ManageMyPost = () => {
                             <td title={volunteerRequest.status} className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>{volunteerRequest.status}</td>
                             <td className='px-4 py-4 text-sm whitespace-nowrap'>
                               <div className='flex items-center gap-x-6'>
-                                <button onClick={() => handleVolunterRequestCancel(volunteerRequest._id)} className='text-white font-bold focus:outline-none btn btn-error btn-xs'>
+                                <button onClick={() => handleVolunteerRequestCancel(volunteerRequest._id)} className='text-white font-bold focus:outline-none btn btn-error btn-xs'>
                                   Cancel
                                 </button>
                               </div>
