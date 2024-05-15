@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../provider/AuthProvider";
@@ -7,6 +7,7 @@ import { FaUserTie } from "react-icons/fa";
 
 const NavBar = () => {
     const { user, logOutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // Implement a dark/light theme toggle
     const [theme, setTheme] = useState('light');
@@ -29,6 +30,7 @@ const NavBar = () => {
         try {
             await logOutUser();
             toast.success("Sign out Successfully");
+            navigate('/');
         } catch (error) {
             console.error("Error signing out:", error);
             toast.error("Error signing out");

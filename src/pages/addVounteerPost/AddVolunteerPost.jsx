@@ -52,7 +52,7 @@ const AddVolunteerPost = () => {
                 <h1 className='text-center text-lg md:text-2xl font-bold text-[#a95757]'>Add Volunteer</h1>
                 <p className="text-xs md:text-md text-center w-full md:w-2/3 md:mx-auto text-[#8f8484]">If you're ready to make a difference and join our team, please send a resume and brief cover letter outlining your interest in the position to [contact email or phone number]. We look forward to hearing from you!</p>
             </div>
-            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#eddfdf31] w-full md:w-5/6 mx-auto">
+            <div className="card shrink-0 my-2 md:my-5 shadow-2xl bg-[#d2d7d7e6] w-full md:w-5/6 mx-auto">
                 <form onSubmit={handleAddVolunteer} className="card-body p-4">
                     {/* row-1 */}
                     <div className="flex flex-col md:flex-row  gap-4">

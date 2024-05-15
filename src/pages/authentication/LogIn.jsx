@@ -67,17 +67,14 @@ const LogIn = () => {
     }
   }
 
-  if(user || loading) return
+  if (user || loading) return
 
   return (
     <div className="flex justify-center items-center flex-col md:flex-row gap-5 bg-cover my-16">
       <Helmet>
         <title>CareOX | Login</title>
       </Helmet>
-      <div>
-        <img src="https://i.ibb.co/sgJ9Fpz/login.jpg" alt="" />
-      </div>
-      <div className="shrink-0 w-full max-w-sm shadow-2xl rounded-md my-3 md:my-5 border sm:bg-[#7170703e]">
+      <div className="shrink-0 w-full max-w-sm shadow-2xl rounded-md my-3 md:my-5 border sm:bg-[#707171]">
         <form onSubmit={handleSubmit(handleLogIn)} className="card-body p-4">
           <div className="form-control">
             <label className="label">
@@ -91,13 +88,13 @@ const LogIn = () => {
               <span className="label-text">Password</span>
             </label>
             <input {...register("password", { required: true })} type={showPassword ? 'text' : 'password'} placeholder="type your password..." className="input input-sm input-bordered" />
-            <span className="absolute top-1/2 right-2 transform -translate-y-1/2" onClick={() => setShowPassword(!showPassword)}>
+            <span className="absolute top-3/4 right-2 transform -translate-y-1/2" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </span>
             {errors.password && <span className="text-red-500 text-xs">This field is required</span>}
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Log In</button>
+            <button className="btn btn-sm btn-outline">Log In</button>
           </div>
           <div className="form-control mx-auto">
             <label className="label">
@@ -107,7 +104,7 @@ const LogIn = () => {
           <hr />
           <h1 className="text-center text-sky-400 font-semibold"> Sign In With: </h1>
         </form>
-        <div className="flex flex-col md:flex-row gap-2 justify-center mb-2">
+        <div className="flex flex-col md:flex-row gap-2 justify-center mb-2 p-1">
           <button onClick={handleGoogleLogIn} className="btn btn-sm btn-outline md:text-white"> <FaGoogle /> Google </button>
           <button onClick={handleGithubLogIn} className="btn btn-sm btn-outline md:text-white"> <FaGithub /> Github </button>
         </div>
