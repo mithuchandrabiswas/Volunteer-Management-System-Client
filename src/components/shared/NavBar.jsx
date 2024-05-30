@@ -50,17 +50,21 @@ const NavBar = () => {
                         <li><NavLink to={"/"}>Home</NavLink></li>
                         <li><NavLink to={"/need-volunteer"}>Need Volunteer</NavLink></li>
                         <li>
-                            <details>
-                                <summary>My Profile</summary>
-                                <ul className="p-2 z-50">
-                                    {user && (
-                                        <>
-                                            <li><NavLink to={"/add-volunteer-post"}>Add Volunteer Post</NavLink></li>
-                                            <li><NavLink to={"/manage-my-post"}>Manage My Post</NavLink></li>
-                                        </>
-                                    )}
-                                </ul>
-                            </details>
+                            {
+                                user && (
+                                    <details>
+                                        <summary>My Profile</summary>
+                                        <ul className="p-2 z-50">
+                                            {user && (
+                                                <>
+                                                    <li><NavLink to={"/add-volunteer-post"}>Add Volunteer Post</NavLink></li>
+                                                    <li><NavLink to={"/manage-my-post"}>Manage My Post</NavLink></li>
+                                                </>
+                                            )}
+                                        </ul>
+                                    </details>
+                                )
+                            }
                         </li>
                         <li>
                             {user ? (

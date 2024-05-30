@@ -3,25 +3,35 @@ import NeedVolunteerCard from '../../components/needVolunteerPage/NeedVolunteerC
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import useAuthContext from '../../hooks/useAuthContext';
 
 const NeedVolunteer = () => {
   const axiosCus = useAxiosSecure();
   const [searchText, setSearchText] = useState('');
+  const [filter, setFilter] = useState('')
+  const [sort, setSort] = useState('')
   const [volunteers, setVolunteers] = useState([]);
-  const [displayFormat, setDisplayFormat] = useState('card'); // Default display format is card
+  const [displayFormat, setDisplayFormat] = useState('card');
+  const { loading, setLoading } = useAuthContext()
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
-        const { data } = await axiosCus(`/volunteers?search=${searchText}`);
+        const { data } = await axiosCus(`/volunteers?search=${searchText}&filter=${filter}&sort=${sort}`);
         setVolunteers(data);
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false)
       }
     };
-
     fetchData();
-  }, [searchText, axiosCus]);
+  }, [searchText, axiosCus, filter, setLoading, sort]);
+
+  if (loading) {
+    return <p>Data loading......</p>
+  }
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -31,6 +41,8 @@ const NeedVolunteer = () => {
 
   const handleReset = () => {
     setSearchText('');
+    setFilter('');
+    setSort('');
   };
 
   const handleDisplayChange = (format) => {
@@ -44,6 +56,26 @@ const NeedVolunteer = () => {
       </Helmet>
       <div>
         <div className='flex flex-col md:flex-row justify-center items-center gap-5'>
+
+          <div>
+            <select
+              onChange={e => {
+                setFilter(e.target.value)
+              }}
+              value={filter}
+              name='category'
+              id='category'
+              className='border p-2 rounded-lg'
+            >
+              <option value=''>Filter By Category</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Education">Education</option>
+              <option value="Social service">Social service</option>
+              <option value="Animal welfare">Animal welfare</option>
+            </select>
+          </div>
+
+
           <form onSubmit={handleSearch}>
             <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
               <input
@@ -63,12 +95,29 @@ const NeedVolunteer = () => {
               </button>
             </div>
           </form>
+          <div>
+            <select
+              onChange={e => {
+                setSort(e.target.value)
+              }}
+              value={sort}
+              name='sort'
+              id='sort'
+              className='border p-2 rounded-md'
+            >
+              <option value=''>Sort By Deadline</option>
+              <option value='dsc'>Descending Order</option>
+              <option value='asc'>Ascending Order</option>
+            </select>
+          </div>
           <button
             onClick={handleReset}
             className='btn btn-sm btn-outline'>
             Reset
           </button>
         </div>
+
+        {/* // Table and Card View */}
         <div className='flex justify-center items-center gap-5 mt-4 p-2'>
           <button
             onClick={() => handleDisplayChange('card')}

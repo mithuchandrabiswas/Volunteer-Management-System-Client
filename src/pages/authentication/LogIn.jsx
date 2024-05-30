@@ -29,11 +29,11 @@ const LogIn = () => {
       console.log(result);
       const { data } = await axiosCus.post(`/jwt`, { email: result?.user?.email })
       // console.log("token", data);
-      toast.success("User sign in by successfully");
+      toast.success("User sign in successfully");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.log(error);
-      toast.error("Google Sign In Failed");
+      toast.error("Sign In Failed");
     }
   }
 

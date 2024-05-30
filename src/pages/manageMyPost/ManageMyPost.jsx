@@ -5,13 +5,14 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuthContext from '../../hooks/useAuthContext';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
 
 const ManageMyPost = () => {
   const axiosCus = useAxiosSecure();
   const { user } = useAuthContext();
   // console.log(user.email);
   const [volunteers, setVolunteers] = useState([]);
-  const [volunteersRequest, setVolunteersRequest] = useState([]);
+  // const [volunteersRequest, setVolunteersRequest] = useState([]);
 
 
   // ====> For Volunteer Post: Start
@@ -59,17 +60,27 @@ const ManageMyPost = () => {
   // ====> For Volunteer Post: End
 
   // ====> For Volunteer Request: Start
-  useEffect(() => {
-    if (user) {
-      getVolunteerRequestData();
-    }
-  }, [user]);
+  const {data: volunteersRequest = [], isLoading, isError, error} = useQuery({
+    queryFn: () => getVolunteerRequestData(),
+    queryKey: ['volunteerRequest']
+  })
+  console.log(volunteersRequest);
+  console.log(isLoading);
+  // console.log(isError);
+  // console.log(error);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     getVolunteerRequestData();
+  //   }
+  // }, [user]);
 
   const getVolunteerRequestData = async () => {
     try {
       const { data } = await axiosCus(`/request-volunteer-post-allData/${user?.email}`);
       // console.log(data);
-      setVolunteersRequest(data);
+      // setVolunteersRequest(data);
+      return data
     } catch (error) {
       // console.error("Error fetching data:", error);
       toast.error("Error fetching data. Please try again later.");
@@ -102,6 +113,12 @@ const ManageMyPost = () => {
   };
 
   // console.log(volunteersRequest);
+
+  if(isLoading) return <p>Data astase vai.... wait koren......</p>
+  if(isError || error) {
+    console.log(isError,error);
+  }
+  
 
   return (
     <div className='mt-16'>
