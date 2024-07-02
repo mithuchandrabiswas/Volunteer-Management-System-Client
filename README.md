@@ -16,3 +16,21 @@ UnityVolunteer is a user-friendly platform for volunteer management, where users
 - **Responsive Design**: UnityVolunteer is designed to be responsive across all devices, including mobile, tablet, and desktop views.
 - **Secure Authentication**: Implemented password and email-based authentication for user login and registration, ensuring secure access to the website's features.
 
+## Technologies Used
+
+- **Frontend**: React.js, TailwindCSS, Axios, TanStack Query
+- **Backend**: Express.js, MongoDB
+- **Authentication**: Firebase Authentication
+
+## Additional Packages Used
+- **react-simple-typewriter**: Create a typewriter effect for dynamic text.
+- **react-awesome-reveal**: Add awesome animations to your React components.
+
+## Project Setup
+
+To run this project locally, follow these steps:
+
+1. **Clone the Repository**:
+2. **Install NPM Package**
+3. **Create a .env file your root directory**
+4. **Run: npm start**:
